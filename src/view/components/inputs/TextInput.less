@@ -1,23 +1,41 @@
 .input {
   font-size: var(--font-size-small);
   color: var(--input-text-color);
-  background-color: var(--input-bg-color);
-  border: 1px solid var(--input-border-color);
-  border-radius: 2px;
-  line-height: 24px;
-  padding: 0 6px;
+  background: linear-gradient(180deg, var(--gray100) 0%, var(--gray150) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  line-height: 28px;
+  padding: 0 10px;
   outline: none;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: linear-gradient(180deg, var(--gray150) 0%, var(--gray200) 100%);
+  }
 
   &:focus {
-    border: 1px solid var(--primary100);
+    border-color: var(--primary100);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(99, 102, 241, 0.15);
+    background: linear-gradient(180deg, var(--gray150) 0%, var(--gray200) 100%);
   }
 
   &:read-only {
-    border-color: var(--input-border-color);
+    border-color: var(--border-color);
+    background: linear-gradient(180deg, var(--gray75) 0%, var(--gray100) 100%);
+    cursor: default;
   }
 
   &:disabled {
     color: var(--text400);
-    border-color: var(--input-border-color);
+    border-color: var(--border-color);
+    background: linear-gradient(180deg, var(--gray75) 0%, var(--gray100) 100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &::placeholder {
+    color: var(--text400);
   }
 }

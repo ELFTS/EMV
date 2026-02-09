@@ -1,21 +1,32 @@
 .layer {
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-size: var(--font-size-small);
-  color: var(--text100);
-  background-color: var(--gray200);
-  border-bottom: 1px solid var(--gray75);
-  padding: 5px;
-  margin: 0 5px;
+  color: var(--text200);
+  background: linear-gradient(180deg, var(--gray200) 0%, var(--gray250) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  margin: 4px 8px;
   position: relative;
-  cursor: default;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 
   & > * {
-    margin-right: 8px;
+    margin-right: 10px;
 
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  &:hover {
+    background: linear-gradient(180deg, var(--gray250) 0%, var(--gray300) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateX(2px);
+    box-shadow: var(--shadow-md);
   }
 
   &:after {
@@ -29,14 +40,45 @@
   text-overflow: ellipsis;
   min-width: 0;
   margin-right: 24px;
+  background: transparent;
+  border: none;
+  color: var(--text200);
+  font-size: var(--font-size-small);
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+
+  &:focus {
+    background: var(--gray100);
+    outline: none;
+    color: var(--text100);
+  }
 }
 
 .active {
-  background-color: var(--primary100);
+  background: linear-gradient(135deg, var(--primary100) 0%, var(--primary200) 100%);
+  border-color: var(--primary200);
+  color: var(--text100);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, var(--primary200) 0%, var(--primary300) 100%);
+    border-color: var(--primary300);
+  }
+
+  .input {
+    color: var(--text100);
+
+    &:focus {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 
 .edit {
-  background-color: var(--gray100);
+  background: linear-gradient(180deg, var(--gray150) 0%, var(--gray200) 100%);
+  border-color: var(--primary100);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .text {
@@ -44,15 +86,33 @@
 }
 
 .icon {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .enableIcon {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 
   &.disabled {
     opacity: 0.3;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }

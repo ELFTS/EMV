@@ -1,51 +1,95 @@
 :root {
-  // Base colors
-  --gray50: #080808;
-  --gray75: #1a1a1a;
-  --gray100: #1e1e1e;
-  --gray200: #2c2c2c;
-  --gray300: #393939;
-  --gray400: #494949;
-  --gray500: #5c5c5c;
-  --gray600: #7c7c7c;
-  --gray700: #a2a2a2;
-  --gray800: #c8c8c8;
-  --gray900: #efefef;
+  // Base colors - 优化灰度层次
+  --gray50: #0a0a0a;
+  --gray75: #141414;
+  --gray100: #1a1a1a;
+  --gray150: #222222;
+  --gray200: #2a2a2a;
+  --gray250: #323232;
+  --gray300: #3d3d3d;
+  --gray350: #454545;
+  --gray400: #525252;
+  --gray500: #6b6b6b;
+  --gray600: #858585;
+  --gray700: #a8a8a8;
+  --gray800: #d4d4d4;
+  --gray900: #f5f5f5;
 
-  --red400: #d7373f;
-  --blue400: #1473e6;
-  --green400: #268e6c;
-  --orange400: #da7b11;
-  --yellow400: #dfbf00;
-  --purple400: #9256d9;
+  // 功能色
+  --red400: #ef4444;
+  --red500: #f87171;
+  --blue400: #3b82f6;
+  --blue500: #60a5fa;
+  --green400: #10b981;
+  --green500: #34d399;
+  --orange400: #f97316;
+  --orange500: #fb923c;
+  --yellow400: #fbbf24;
+  --yellow500: #fcd34d;
+  --purple400: #a855f7;
+  --purple500: #c084fc;
 
-  --primary100: #704dd8;
-  --primary200: lighten(#704dd8, 4%);
-  --primary300: lighten(#704dd8, 8%);
-  --primary400: lighten(#704dd8, 12%);
-  --primary500: lighten(#704dd8, 16%);
+  // 主色调 - 使用更现代的紫色渐变
+  --primary100: #6366f1;
+  --primary200: #818cf8;
+  --primary300: #a5b4fc;
+  --primary400: #c7d2fe;
+  --primary500: #e0e7ff;
 
+  // 强调色 - 用于高亮和选中状态
+  --accent100: #06b6d4;
+  --accent200: #22d3ee;
+  --accent300: #67e8f9;
+
+  // 文本颜色
   --text100: var(--gray900);
   --text200: var(--gray800);
   --text300: var(--gray700);
   --text400: var(--gray600);
   --text500: var(--gray500);
 
-  --background-color: #202020;
+  // 背景色
+  --background-color: #151515;
+  --surface-color: #1e1e1e;
+  --elevated-color: #252525;
+
+  // 边框和分割线
+  --border-color: rgba(255, 255, 255, 0.08);
+  --divider-color: rgba(255, 255, 255, 0.06);
+
+  // 阴影
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+  // 圆角
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
 
   // Fonts
   --font-family: 'Roboto', sans-serif;
   --font-size-xsmall: 10px;
   --font-size-small: 11px;
   --font-size-normal: 12px;
-  --font-size-large: 16px;
-  --font-size-xlarge: 20px;
+  --font-size-large: 14px;
+  --font-size-xlarge: 18px;
+  --font-size-xxlarge: 24px;
 
+  // 输入框样式
   --input-text-color: var(--text200);
   --input-border-color: var(--gray400);
-  --input-bg-color: var(--gray75);
-  --input-border-radius: 2px;
+  --input-bg-color: var(--gray100);
+  --input-border-radius: var(--radius-md);
 
+  // 过渡动画
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  // 层级
   --z-index-hidden: -1;
   --z-index-above: 1;
   --z-index-overlay: 2;
@@ -54,4 +98,5 @@
   --z-index-modal-overlay: 5;
   --z-index-modal-window: 6;
   --z-index-menu: 7;
+  --z-index-tooltip: 8;
 }

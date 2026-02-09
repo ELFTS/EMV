@@ -1,20 +1,26 @@
 .menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   list-style: none;
-  background-color: var(--gray100);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, var(--gray150) 0%, var(--gray200) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
   z-index: var(--z-index-menu);
+  padding: 6px 0;
+  min-width: 180px;
+  backdrop-filter: blur(10px);
 }
 
 .separator {
-  padding: 5px;
+  padding: 8px 12px;
+  pointer-events: none;
 
   &:after {
     content: '';
-    border-top: 1px solid var(--primary100);
+    border-top: 1px solid var(--divider-color);
     display: block;
   }
 

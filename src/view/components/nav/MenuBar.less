@@ -2,11 +2,23 @@
   position: relative;
   font-size: var(--font-size-normal);
   color: var(--text400);
-  background-color: var(--gray75);
-  padding: 0 20px;
+  background: transparent;
+  padding: 0 16px;
   -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    color: var(--text200);
+  }
 }
 
 .focused {
-  color: var(--text300);
+  color: var(--text200);
+
+  .bar {
+    color: var(--text200);
+  }
 }

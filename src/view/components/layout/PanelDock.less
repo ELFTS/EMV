@@ -2,7 +2,8 @@
   display: flex;
   position: relative;
   overflow: hidden;
-  background-color: var(--gray100);
+  background: linear-gradient(180deg, var(--surface-color) 0%, var(--gray100) 100%);
+  box-shadow: var(--shadow-md);
 
   &.vertical {
     flex-direction: column;
@@ -15,19 +16,19 @@
   }
 
   &.left {
-    border-right: 1px solid var(--gray75);
+    border-right: 1px solid var(--border-color);
   }
 
   &.right {
-    border-left: 1px solid var(--gray75);
+    border-left: 1px solid var(--border-color);
   }
 
   &.top {
-    border-bottom: 1px solid var(--gray75);
+    border-bottom: 1px solid var(--border-color);
   }
 
   &.bottom {
-    border-top: 1px solid var(--gray75);
+    border-top: 1px solid var(--border-color);
   }
 }
 

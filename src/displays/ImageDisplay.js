@@ -125,18 +125,21 @@ export default class ImageDisplay extends WebGLDisplay {
     const { src, width: w, height: h, fixed: f } = this.properties;
 
     // If we get an HTMLImageElement
-    if (typeof image === 'object') {
+    if (typeof image === 'object' && image instanceof HTMLImageElement) {
       this.image = image;
 
       if (image.src === BLANK_IMAGE) {
         // Image reset
         properties = { ...ImageDisplay.config.defaultProperties };
       } else if (image.src !== src) {
-        // New image
+        // New image - 图片已经在 ImageInput 中加载完成，直接获取尺寸
+        const naturalWidth = image.naturalWidth || image.width || 0;
+        const naturalHeight = image.naturalHeight || image.height || 0;
+        
         properties = {
           src: image.src,
-          width: image.naturalWidth,
-          height: image.naturalHeight,
+          width: naturalWidth,
+          height: naturalHeight,
           opacity: 1,
         };
       } else {

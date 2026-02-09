@@ -21,22 +21,30 @@
 }
 
 .image {
-  background: #000 center;
-  border: 2px solid var(--gray300);
-  border-radius: 7px;
+  background: linear-gradient(135deg, var(--gray100) 0%, var(--gray150) 100%) center;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
   height: 84px;
   width: 84px;
-  transition: border-color 0.5s;
+  transition: all var(--transition-fast);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   &:hover {
     border-color: var(--primary100);
-    transition: none;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
   }
 }
 

@@ -1,56 +1,73 @@
 .buttons {
   white-space: nowrap;
+  display: flex;
+  gap: 8px;
 }
 
 .button {
   color: var(--text100);
-  background-color: transparent;
+  background: linear-gradient(180deg, var(--gray200) 0%, var(--gray250) 100%);
   padding: 0;
-  margin-right: 4px;
-  display: inline-block;
-  flex-wrap: nowrap;
-  border: 2px solid var(--gray300);
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  line-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
   text-align: center;
   vertical-align: middle;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
 
   &:last-child {
     margin-right: 0;
   }
 
   &:hover {
-    border: 2px solid var(--primary100);
+    background: linear-gradient(180deg, var(--primary100) 0%, var(--primary200) 100%);
+    border-color: var(--primary200);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px) scale(1.05);
   }
 
   &:active {
-    border-color: var(--text100);
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--shadow-sm);
   }
 }
 
 .playButton {
+  background: linear-gradient(135deg, var(--primary100) 0%, var(--primary200) 100%);
+  border-color: var(--primary200);
+  box-shadow: var(--shadow-md), 0 0 10px rgba(99, 102, 241, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, var(--primary200) 0%, var(--primary300) 100%);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+
   .icon {
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
     margin-left: 2px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
   }
 }
 
 .pauseButton {
   .icon {
-    width: 24px;
-    height: 24px;
-    margin: 6px;
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
   }
 }
 
 .stopButton {
   .icon {
-    width: 24px;
-    height: 24px;
-    margin: 6px;
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
   }
 }

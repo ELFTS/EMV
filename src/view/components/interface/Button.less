@@ -1,21 +1,67 @@
 .button {
-  display: inline-block;
-  background-color: var(--primary100);
-  padding: 8px 10px;
-  border-radius: 3px;
-  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary100) 0%, var(--primary200) 100%);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
   margin-right: 10px;
+  font-size: var(--font-size-normal);
+  font-weight: 500;
+  color: var(--text100);
+  border: none;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
 
   &:last-child {
     margin-right: 0;
   }
 
   &:hover {
-    background-color: var(--primary200);
+    background: linear-gradient(135deg, var(--primary200) 0%, var(--primary300) 100%);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
   }
 
   &.disabled {
-    color: var(--text200);
-    background-color: var(--gray400);
+    color: var(--text400);
+    background: var(--gray300);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  // 玻璃拟态效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
   }
 }

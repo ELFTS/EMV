@@ -1,24 +1,37 @@
 .item {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-small);
-  padding: 5px 5px 5px 20px;
-  min-width: 140px;
+  padding: 8px 12px 8px 32px;
+  min-width: 160px;
+  color: var(--text200);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  margin: 0 6px;
 
   &:hover {
     color: var(--text100);
-    background-color: var(--primary100);
-    cursor: default;
+    background: linear-gradient(90deg, var(--primary100) 0%, var(--primary200) 100%);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
 .checked {
   &:before {
     content: '\2713';
-    color: var(--text100);
+    color: var(--accent200);
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 14px;
   }
 
   &:hover:before {
@@ -27,10 +40,25 @@
 }
 
 .disabled {
-  color: var(--text300);
+  color: var(--text400);
+  cursor: not-allowed;
+  opacity: 0.6;
+
+  &:hover {
+    color: var(--text400);
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.accelerator {
+  margin-left: auto;
+  padding-left: 20px;
+  color: var(--text400);
+  font-size: var(--font-size-xsmall);
 
   &:hover {
     color: var(--text300);
-    background-color: transparent;
   }
 }

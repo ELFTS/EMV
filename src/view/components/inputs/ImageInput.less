@@ -1,11 +1,18 @@
 .image {
   height: 100px;
   width: 100px;
-  background-color: var(--input-bg-color);
-  border: 1px solid var(--input-border-color);
-  border-radius: var(--input-border-radius);
+  background: linear-gradient(135deg, var(--gray150) 0%, var(--gray200) 100%);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--primary200);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+  }
 
   &:hover .openIcon {
     opacity: 1;
@@ -26,9 +33,15 @@
 .img {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .openIcon {

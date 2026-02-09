@@ -1,10 +1,11 @@
 .titlebar {
   display: flex;
   position: relative;
-  height: 40px;
-  background-color: var(--gray75);
-  border-bottom: 1px solid var(--gray300);
+  height: 42px;
+  background: linear-gradient(180deg, var(--gray150) 0%, var(--gray100) 100%);
+  border-bottom: 1px solid var(--border-color);
   -webkit-app-region: no-drag;
+  box-shadow: var(--shadow-sm);
 
   &:before {
     content: '';
@@ -18,8 +19,11 @@
   }
 
   &.focused {
+    background: linear-gradient(180deg, var(--gray200) 0%, var(--gray150) 100%);
+
     .title {
-      color: var(--text300);
+      color: var(--text200);
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
     }
   }
 }
@@ -28,12 +32,14 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: var(--font-size-normal);
+  font-size: var(--font-size-large);
+  font-weight: 500;
   color: var(--text400);
-  line-height: 40px;
-  letter-spacing: 5px;
+  line-height: 42px;
+  letter-spacing: 6px;
   text-transform: uppercase;
   cursor: default;
+  transition: all var(--transition-normal);
 }
 
 @media only screen and (max-width: 700px) {
@@ -45,6 +51,7 @@
 .icon {
   width: 32px;
   height: 32px;
-  top: 4px;
-  left: 4px;
+  top: 5px;
+  left: 8px;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
 }
