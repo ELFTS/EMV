@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { player } from 'view/global';
 import Icon from 'components/interface/Icon';
@@ -7,6 +8,7 @@ import useForceUpdate from 'hooks/useForceUpdate';
 import styles from './PlayButtons.less';
 
 export default function PlayButtons() {
+  const { t } = useTranslation();
   const forceUpdate = useForceUpdate();
   const playing = player.isPlaying();
 
@@ -34,11 +36,11 @@ export default function PlayButtons() {
         <Icon
           className={styles.icon}
           glyph={playing ? Pause : Play}
-          title={playing ? 'Pause' : 'Play'}
+          title={playing ? t('player.pause') : t('player.play')}
         />
       </div>
       <div className={classNames(styles.button, styles.stopButton)} onClick={handleStopButtonClick}>
-        <Icon className={styles.icon} glyph={Stop} title="Stop" />
+        <Icon className={styles.icon} glyph={Stop} title={t('player.stop')} />
       </div>
     </div>
   );

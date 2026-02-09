@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useEffect } from 'react';
 import { stage } from 'global';
-import Control from 'components/controls/Control';
+import ControlWithI18n from 'components/controls/ControlWithI18n';
 import useApp from 'actions/app';
 import useScenes from 'actions/scenes';
 import styles from './ControlsPanel.less';
@@ -31,7 +31,7 @@ export default function ControlsPanel() {
 
         return (
           <div id={`control-${id}`} key={id} className={styles.control}>
-            <Control display={display} />
+            <ControlWithI18n display={display} />
           </div>
         );
       })}

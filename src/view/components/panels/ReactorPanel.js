@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Control } from 'components/controls';
+import { useTranslation } from 'react-i18next';
+import ControlWithI18n from 'components/controls/ControlWithI18n';
 import useEntity from 'hooks/useEntity';
 import Icon from 'components/interface/Icon';
 import { BoxInput } from 'components/inputs';
@@ -33,6 +34,7 @@ export default function ReactorPanel() {
 }
 
 const ReactorControl = ({ reactor }) => {
+  const { t } = useTranslation();
   const spectrum = useRef();
   const meter = useRef();
   const spectrumCanvas = useRef();
@@ -92,7 +94,7 @@ const ReactorControl = ({ reactor }) => {
       <Header path={reactor.displayName.split('/')} />
       <div className={styles.display}>
         <div className={styles.controls}>
-          <Control display={reactor} showHeader={false} />
+          <ControlWithI18n display={reactor} showHeader={false} />
         </div>
         <div className={styles.spectrum}>
           <canvas ref={spectrumCanvas} width={SPECTRUM_WIDTH} height={REACTOR_BAR_HEIGHT} />
@@ -113,7 +115,7 @@ const ReactorControl = ({ reactor }) => {
       <Icon
         className={styles.closeIcon}
         glyph={ChevronDown}
-        title="Hide Panel"
+        title={t('panel.hidePanel')}
         onClick={hideReactor}
       />
     </div>

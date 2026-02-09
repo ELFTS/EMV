@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import SceneLayer from 'components/panels/SceneLayer';
 import Layout from 'components/layout/Layout';
 import ButtonPanel from 'components/layout/ButtonPanel';
@@ -17,6 +18,7 @@ import { reverse } from 'utils/array';
 import styles from './LayersPanel.less';
 
 export default function LayersPanel() {
+  const { t } = useTranslation();
   const scenes = useScenes(state => state.scenes);
   const activeElementId = useApp(state => state.activeElementId);
   const hasScenes = scenes.length > 0;
@@ -64,7 +66,7 @@ export default function LayersPanel() {
   function handleAddDisplay() {
     showModal(
       'ControlPicker',
-      { title: 'Controls' },
+      { title: t('panel.controls') },
       { type: 'displays', onSelect: handleAddControl },
     );
   }
@@ -72,7 +74,7 @@ export default function LayersPanel() {
   function handleAddEffect() {
     showModal(
       'ControlPicker',
-      { title: 'Controls' },
+      { title: t('panel.controls') },
       { type: 'effects', onSelect: handleAddControl },
     );
   }
@@ -125,34 +127,34 @@ export default function LayersPanel() {
         ))}
       </div>
       <ButtonPanel>
-        <ButtonInput icon={Picture} title="Add Scene" onClick={handleAddScene} />
+        <ButtonInput icon={Picture} title={t('panel.addScene')} onClick={handleAddScene} />
         <ButtonInput
           icon={Cube}
-          title="Add Display"
+          title={t('panel.addDisplay')}
           onClick={handleAddDisplay}
           disabled={!hasScenes}
         />
         <ButtonInput
           icon={LightUp}
-          title="Add Effect"
+          title={t('panel.addEffect')}
           onClick={handleAddEffect}
           disabled={!hasScenes}
         />
         <ButtonInput
           icon={ChevronUp}
-          title="Move Layer Up"
+          title={t('panel.moveLayerUp')}
           onClick={handleMoveUp}
           disabled={!layerSelected}
         />
         <ButtonInput
           icon={ChevronDown}
-          title="Move Layer Down"
+          title={t('panel.moveLayerDown')}
           onClick={handleMoveDown}
           disabled={!layerSelected}
         />
         <ButtonInput
           icon={TrashEmpty}
-          title="Delete Layer"
+          title={t('panel.deleteLayer')}
           onClick={handleRemove}
           disabled={!layerSelected}
         />

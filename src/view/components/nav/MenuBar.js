@@ -7,6 +7,11 @@ export default function MenuBar({ items = [], focused = true, onMenuAction = () 
   const [menuItems, setMenuItems] = useState(items);
   const [activeIndex, setActiveIndex] = useState();
 
+  // Update menu items when props change (e.g., language switch)
+  useEffect(() => {
+    setMenuItems(items);
+  }, [items]);
+
   function handleDocumentClick() {
     setActiveIndex(-1);
   }

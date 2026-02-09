@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TabPanel, Tab } from 'components/layout/TabPanel';
 import { library } from 'view/global';
 import styles from './ControlPicker.less';
@@ -6,6 +7,8 @@ import styles from './ControlPicker.less';
 const types = ['displays', 'effects'];
 
 export default function ControlPicker({ type, onSelect, onClose }) {
+  const { t } = useTranslation();
+
   function handleClick(item) {
     onSelect(item);
     onClose();
@@ -15,12 +18,28 @@ export default function ControlPicker({ type, onSelect, onClose }) {
     e.target.style.display = 'none';
   }
 
+  const getTranslatedLabel = (item) => {
+    const { config } = item;
+    const { name, label } = config;
+
+    if (name.includes('Display')) {
+      const key = name.replace('Display', '').toLowerCase();
+      return t(`display.${key}`);
+    }
+    if (name.includes('Effect')) {
+      const key = name.replace('Effect', '').toLowerCase();
+      return t(`effect.${key}`);
+    }
+    return label;
+  };
+
   const Catalog = ({ items }) => {
     return Object.keys(items).map((key, index) => {
       const item = items[key];
       const {
-        config: { icon, label },
+        config: { icon },
       } = item;
+      const label = getTranslatedLabel(item);
 
       return (
         <div key={index} className={styles.item}>
@@ -39,10 +58,10 @@ export default function ControlPicker({ type, onSelect, onClose }) {
 
   return (
     <TabPanel className={styles.panel} tabPosition="left" activeIndex={types.indexOf(type)}>
-      <Tab name="Displays" contentClassName={styles.picker}>
+      <Tab name={t('panel.layers')} contentClassName={styles.picker}>
         <Catalog items={library.get('displays')} />
       </Tab>
-      <Tab name="Effects" contentClassName={styles.picker}>
+      <Tab name={t('panel.controls')} contentClassName={styles.picker}>
         <Catalog items={library.get('effects')} />
       </Tab>
     </TabPanel>

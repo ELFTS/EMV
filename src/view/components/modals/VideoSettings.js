@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import shallow from 'zustand/shallow';
 import { api, player } from 'global';
 import { Settings, Setting } from 'components/controls';
@@ -21,10 +22,12 @@ const qualitySettings = [
   { label: 'High', value: 'high' },
 ];
 
-const videoCodecs = Object.keys(videoConfig.codecs).map(key => ({
-  label: videoConfig.codecs[key].label,
-  value: key,
-}));
+function getVideoCodecs(t) {
+  return Object.keys(videoConfig.codecs).map(key => ({
+    label: t(`videoCodec.${key}`),
+    value: key,
+  }));
+}
 
 const initialState = {
   videoFile: '',
@@ -36,10 +39,12 @@ const initialState = {
 };
 
 export default function VideoSettings({ onClose }) {
+  const { t } = useTranslation();
   const [audioFile, duration] = useAudio(state => [state.file, state.duration], shallow);
   const [state, setState] = useState(initialState);
   const { videoFile, codec, fps, quality, timeStart, timeEnd } = state;
   const canStart = videoFile && audioFile && timeEnd - timeStart > 0;
+  const videoCodecs = getVideoCodecs(t);
 
   useEffect(() => {
     player.stop();
@@ -99,7 +104,7 @@ export default function VideoSettings({ onClose }) {
     <Layout width={700}>
       <Settings columns={['40%', '60%']} onChange={handleChange}>
         <Setting
-          label="Save Video To"
+          label={t('modal.video.saveTo')}
           type="text"
           name="videoFile"
           width={300}
@@ -109,12 +114,12 @@ export default function VideoSettings({ onClose }) {
           <ButtonInput
             className={styles.button}
             icon={FolderOpen}
-            title="Save File"
+            title={t('modal.video.saveTo')}
             onClick={handleOpenVideoFile}
           />
         </Setting>
         <Setting
-          label="Audio File"
+          label={t('modal.video.audioFile')}
           type="text"
           name="audioFile"
           width={300}
@@ -124,21 +129,21 @@ export default function VideoSettings({ onClose }) {
           <ButtonInput
             className={styles.button}
             icon={FolderOpen}
-            title="Open File"
+            title={t('modal.video.audioFile')}
             onClick={handleOpenAudioFile}
           />
         </Setting>
-        <Setting label="Encoder" type="select" name="codec" items={videoCodecs} value={codec} />
+        <Setting label={t('modal.video.encoder')} type="select" name="codec" items={videoCodecs} value={codec} />
         <Setting
-          label="Quality"
+          label={t('modal.video.quality')}
           type="select"
           name="quality"
           items={qualitySettings}
           value={quality}
         />
-        <Setting label="FPS" type="number" name="fps" min={1} max={60} value={fps} />
+        <Setting label={t('modal.video.fps')} type="number" name="fps" min={1} max={60} value={fps} />
         <Setting
-          label="Start Time"
+          label={t('modal.video.startTime')}
           type="time"
           name="timeStart"
           width={80}
@@ -148,7 +153,7 @@ export default function VideoSettings({ onClose }) {
           disabled={!audioFile}
         />
         <Setting
-          label="End Time"
+          label={t('modal.video.endTime')}
           type="time"
           name="timeEnd"
           width={80}
@@ -157,13 +162,13 @@ export default function VideoSettings({ onClose }) {
           value={timeEnd}
           disabled={!audioFile}
         />
-        <Setting label="Total Time">
+        <Setting label={t('modal.video.totalTime')}>
           <TimeInfo currentTime={timeEnd - timeStart} totalTime={duration} />
         </Setting>
       </Settings>
       <ButtonRow>
-        <Button text="Start" onClick={handleStart} disabled={!canStart} />
-        <Button text="Cancel" onClick={handleCancel} />
+        <Button text={t('modal.video.start')} onClick={handleStart} disabled={!canStart} />
+        <Button text={t('modal.video.cancel')} onClick={handleCancel} />
       </ButtonRow>
     </Layout>
   );

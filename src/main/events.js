@@ -1,6 +1,8 @@
 import { ipcMain, dialog } from 'electron';
 import debug from 'debug';
 import { getWindow, getWindowState } from './window';
+import { changeLanguage } from './i18n';
+import { rebuildMenu } from './menu';
 
 const log = debug('preload');
 
@@ -48,5 +50,10 @@ export default function init() {
 
   ipcMain.handle('get-window-state', () => {
     return getWindowState();
+  });
+
+  ipcMain.handle('change-language', async (event, lng) => {
+    await changeLanguage(lng);
+    rebuildMenu();
   });
 }

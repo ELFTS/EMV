@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from 'components/interface/Button';
 import { Settings, Setting } from 'components/controls';
 import Layout from 'components/layout/Layout';
@@ -12,6 +13,7 @@ import {
 } from 'view/constants';
 
 export default function CanvasSettings({ onClose }) {
+  const { t } = useTranslation();
   const stageConfig = useStage(state => state);
   const [state, setState] = useState(stageConfig);
   const { width, height, backgroundColor } = state;
@@ -33,7 +35,7 @@ export default function CanvasSettings({ onClose }) {
     <Layout width={500}>
       <Settings columns={['50%', '50%']} onChange={handleChange}>
         <Setting
-          label="Width"
+          label={t('modal.canvas.width')}
           type="number"
           name="width"
           value={width}
@@ -42,7 +44,7 @@ export default function CanvasSettings({ onClose }) {
           step={2}
         />
         <Setting
-          label="Height"
+          label={t('modal.canvas.height')}
           type="number"
           name="height"
           value={height}
@@ -51,15 +53,15 @@ export default function CanvasSettings({ onClose }) {
           step={2}
         />
         <Setting
-          label="Background Color"
+          label={t('modal.canvas.backgroundColor')}
           type="color"
           name="backgroundColor"
           value={backgroundColor}
         />
       </Settings>
       <ButtonRow>
-        <Button onClick={handleSave} text="OK" />
-        <Button onClick={handleCancel} text="Cancel" />
+        <Button onClick={handleSave} text={t('modal.canvas.ok')} />
+        <Button onClick={handleCancel} text={t('modal.canvas.cancel')} />
       </ButtonRow>
     </Layout>
   );

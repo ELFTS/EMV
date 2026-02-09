@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Icon, Spinner, Checkmark } from 'components/interface';
 import { Warning } from 'view/icons';
 import useUpdates, {
@@ -10,6 +11,7 @@ import useUpdates, {
 import styles from './AppUpdates.less';
 
 export default function AppUpdates({ onClose }) {
+  const { t } = useTranslation();
   const { status, checked, hasUpdate, downloadComplete, downloadProgress, updateInfo } = useUpdates(
     state => state,
   );
@@ -24,21 +26,21 @@ export default function AppUpdates({ onClose }) {
 
   function getMessage() {
     if (status === 'error') {
-      return 'An error has occured. Unable to check for updates.';
+      return t('error.checkUpdateError');
     }
     if (status === 'downloading') {
-      return `Downloading update... ${~~downloadProgress}%`;
+      return `${t('error.downloadingUpdate')} ${~~downloadProgress}%`;
     }
     if (downloadComplete) {
-      return `A new update (${updateInfo.version}) is ready to install.`;
+      return t('error.updateReady', { version: updateInfo.version });
     }
     if (hasUpdate) {
-      return `A new update (${updateInfo.version}) is available to download and install.`;
+      return t('error.updateAvailable', { version: updateInfo.version });
     }
     if (checked) {
-      return 'You have the latest version.';
+      return t('error.latestVersion');
     }
-    return 'Checking for updates...';
+    return t('modal.updates.checking');
   }
 
   function getIcon() {
@@ -70,12 +72,12 @@ export default function AppUpdates({ onClose }) {
       </div>
       <div className={styles.buttons}>
         {hasUpdate && !downloadComplete && status !== 'downloading' && (
-          <Button text="Download update" onClick={handleDownload} />
+          <Button text={t('modal.updates.download')} onClick={handleDownload} />
         )}
-        {downloadComplete && <Button text="Restart and install update" onClick={handleInstall} />}
+        {downloadComplete && <Button text={t('modal.updates.restartAndInstall')} onClick={handleInstall} />}
         <Button
           className={styles.button}
-          text={downloadComplete ? 'Restart later' : 'Close'}
+          text={downloadComplete ? t('modal.updates.restartLater') : t('modal.updates.close')}
           onClick={onClose}
         />
       </div>

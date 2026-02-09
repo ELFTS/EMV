@@ -8,6 +8,7 @@ import * as env from './environment';
 import initMenu from './menu';
 import initAutoUpdate from './autoupdate';
 import initEvents from './events';
+import { initI18n } from './i18n';
 
 const log = debug('init');
 
@@ -52,6 +53,7 @@ function loadExtensions(session) {
 export default async function init() {
   log('Initialize application');
 
+  await initI18n('zh-CN');
   await createFolder(env.TEMP_PATH);
   await removeTempFiles();
 
@@ -61,7 +63,11 @@ export default async function init() {
 
   initMenu();
   initEvents();
-  initAutoUpdate();
+
+  // Only enable auto-update in production
+  if (process.env.NODE_ENV === 'production') {
+    initAutoUpdate();
+  }
 
   // Modify the user agent for all requests to the following urls
   const filter = {

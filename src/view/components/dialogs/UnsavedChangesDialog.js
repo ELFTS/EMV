@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Dialog from 'components/window/Dialog';
 import useProject, { newProject, openProjectFile, saveProjectFile } from 'actions/project';
 
 export default function UnsavedChangesDialog({ action, onClose }) {
+  const { t } = useTranslation();
   const project = useProject(state => state);
 
   async function handleAction(action) {
@@ -14,13 +16,13 @@ export default function UnsavedChangesDialog({ action, onClose }) {
   }
 
   async function handleConfirm(button) {
-    if (button === 'Yes') {
+    if (button === t('dialog.yes')) {
       const saved = await saveProjectFile(project.file);
 
       if (saved) {
         await handleAction(action);
       }
-    } else if (button === 'No') {
+    } else if (button === t('dialog.no')) {
       await handleAction(action);
     }
     onClose();
@@ -28,8 +30,8 @@ export default function UnsavedChangesDialog({ action, onClose }) {
 
   return (
     <Dialog
-      message="Do you want to save project changes before closing?"
-      buttons={['Yes', 'No', 'Cancel']}
+      message={t('dialog.unsavedChanges')}
+      buttons={[t('dialog.yes'), t('dialog.no'), t('modal.settings.cancel')]}
       onConfirm={handleConfirm}
     />
   );
